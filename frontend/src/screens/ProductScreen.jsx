@@ -1,17 +1,40 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import products from "../products";
+
 import "./ProductScreen.css";
 import Ratings from "../components/Ratings"
+import { useEffect, useState } from "react"
+import Axios from "axios"
+
 
 const ProductScreen = () => {
+  const [product, setProduct] = useState({});
   const { id } = useParams();
-  const product = products.find((product) => product._id === id);
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/api/products/${id}`)
+      .then((res) => {
+        console.log(res);
+        setProduct(res.data);
+      }) 
+    .catch((err)=>{
+      console.log(err);
+
+    })
+
+  },[]);
+
+ 
+
+
+  
+
+  // const product = products.find((product) => product._id === id);
   console.log(product);
 
 	return (
     <div>
+      <h2>{id}</h2>
       <h1 className="product_screen_right_name">{product.name}</h1>
       <div className="product_screen">
         <div className="product_screen_left">
@@ -27,8 +50,7 @@ const ProductScreen = () => {
                 text={`${product.numReviews} reviews`}
               />
               <p>${product.description}</p>
-              {/* <p>{product.category}</p> */}
-              {/* <h2>{product.brand}</h2> */}
+              
             </div>
 
             <div className="product_screen_right2">

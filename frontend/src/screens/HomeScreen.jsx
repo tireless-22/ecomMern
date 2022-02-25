@@ -1,13 +1,29 @@
 import React from "react";
 import home_image from "../images/home_image.jpg";
 import "./HomeScreen.css";
-import products from "../products";
+// import products from "../products";
 import Ratings from "../components/Ratings";
-
+import Axios from "axios"
 import { Link } from "react-router-dom"
+import { useState,useEffect } from "react"
 
 
 function HomeScreen() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(()=>{
+     Axios.get("http://localhost:3001/api/products")
+    .then(res => {
+      console.log(res);
+      setProducts(res.data);
+      
+    })
+    .catch(e => {
+      console.log(e);
+  })
+
+  },[]);
+ 
 
 
 
