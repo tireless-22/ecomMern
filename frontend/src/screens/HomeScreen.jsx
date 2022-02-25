@@ -4,6 +4,8 @@ import "./HomeScreen.css";
 import products from "../products";
 import Ratings from "../components/Ratings";
 
+import { Link } from "react-router-dom"
+
 
 function HomeScreen() {
 
@@ -15,13 +17,14 @@ function HomeScreen() {
       <div className="home_container">
         {products.map((product, _id) => (
           <div className="product_card">
-            <a href={`product/${product._id}`}>
+            <Link to={`product/${product._id}`}>
               <img className="product_image" src={product.image} />
-            </a>
+            </Link>
             <div>
-              <h3>{product.name}</h3>
-              <h4>${product.price}</h4>
+              <h3 className="product_name">{product.name}</h3>
+              <h4 className="product_price">${product.price}</h4>
               <Ratings
+                className="product-ratings"
                 value={product.rating}
                 text={`${product.numReviews} reviews`}
               />
