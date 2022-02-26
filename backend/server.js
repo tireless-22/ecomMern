@@ -1,11 +1,19 @@
-const express = require("express");
+
+import express from "express"
 const app = express();
-const products=require("./data/products")
-const cors = require("cors");
+import cors from "cors"
+import products from "./data/products.js"
+// const products=require("./data/products")
+
+import connectDB from "./db.js"
 app.use(cors());
 app.use(express());
+import dotenv from "dotenv"
+
+connectDB();
 
 
+dotenv.config();
 app.post("/", (req, res) => {
 	res.send("api is running");
 })
@@ -22,8 +30,10 @@ app.get("/api/products/:id", (req, res) => {
 
 })
 
+const PORT = process.env.PORT||3001;
 
-app.listen (3001,()=>{
+
+app.listen (PORT,()=>{
 	console.log("server is running");
 })
 

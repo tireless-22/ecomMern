@@ -22,7 +22,7 @@ const ProductScreen = () => {
 
     })
 
-  },[]);
+  },[id]);
 
  
 
