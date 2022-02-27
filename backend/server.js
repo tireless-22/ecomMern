@@ -3,6 +3,7 @@ import express from "express"
 const app = express();
 import cors from "cors"
 import products from "./data/products.js"
+import colors from "colors"
 // const products=require("./data/products")
 
 import connectDB from "./db.js"
